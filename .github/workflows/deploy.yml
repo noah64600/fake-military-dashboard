@@ -44,9 +44,7 @@ jobs:
             # Grace a Github actions.
 
             # donc imagine que tu est sur le serveur en train de taper les commandes docker
-
-            # 1. tape la commande docker pour arreter le container mymilitary
-            docker stop mymilitary
+            docker rm -f mymilitary 2> /dev/null || true 
             # 2. On va mettre a jour l'image mymilitary sur le serveur VPS
             # Je te tape la commande car tu ne la connais pas
             docker pull noah64/military
