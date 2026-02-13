@@ -40,9 +40,9 @@ jobs:
         run: |
           docker buildx build \
             --push \
-            --cache-from=type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/miitary-${{ matrix.component }}:buildcache \
-            --cache-to=type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/miitary-${{ matrix.component }}:buildcache,mode=max \
+            --cache-from=type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/military${{ matrix.component }}:buildcache \
+            --cache-to=type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/military${{ matrix.component }}:buildcache,mode=max \
             --build-arg BUILDKIT_INLINE_CACHE=1 \
-            -t ${{ secrets.DOCKERHUB_USERNAME }}/military-${{ matrix.component }}:latest \
+            -t ${{ secrets.DOCKERHUB_USERNAME }}/military${{ matrix.component }}:latest \
             ./${{ matrix.component }}
 
