@@ -3,13 +3,15 @@
 # ==============================
 
 # A. Utilise l'image suivante debian:stable-slim comme base
-
+FROM debian:stable-slim
 
 # ==============================
 # Installe Nginx
 # ==============================
 
 RUN apt-get update -y
+
+RUN apt install nginx -y
 
 # B. Installer nginx en utilisant apt
 
@@ -33,6 +35,8 @@ COPY nginx.conf /etc/nginx/nginx.conf
 # ==============================
 
 # C. Copier le dossier military-dashboard dans /usr/share/nginx/html
+
+COPY military-dashboard /usr/share/nginx/html
 
 # ==============================
 # Expose port
