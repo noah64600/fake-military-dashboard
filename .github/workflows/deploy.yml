@@ -1,0 +1,56 @@
+name: Deploy VPS
+
+on:
+  workflow_run:
+    workflows: ["Build and Push Docker Images"]
+    types: [completed]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: docker-deploy-vps-${{ github.event.workflow_run.head_branch }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.event.workflow_run.conclusion == 'success'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Deploy to VPS server
+        uses: appleboy/ssh-action@v1.0.3
+
+        # Que faut-il faire avec les secrets ici ?
+        with:
+          host: ${{ secrets.PETSAFE_SSH_HOST }}
+          username: ${{ secrets.PETSAFE_SSH_USER }}
+          port: ${{ secrets.PETSAFE_SSH_PORT_PROD }}
+          key: ${{ secrets.PETSAFE_PRIVATEKEY_PROD }}
+          timeout: 60s
+          command_timeout: 10m
+          debug: true
+          script: |
+            set -e
+
+            # Message pour indiquer que la CD github action à établie la conexion SSH au VPS
+            echo "connexion etablie"
+            
+            # Ici il s'agit d'un script qui sera executé sur ton serveur vpstraining
+            # Quand on est ici on est déjà connecté en SSh sur le serveur.
+            # Grace a Github actions.
+
+            # donc imagine que tu est sur le serveur en train de taper les commandes docker
+
+            # 1. tape la commande docker pour arreter le container mymilitary
+
+            # 2. On va mettre a jour l'image mymilitary sur le serveur VPS
+            # Je te tape la commande car tu ne la connais pas
+            docker pull noah64/military
+
+            # 3. Maintenant on relance le container mymilitary
+
+            echo "Déploiement complet !"
