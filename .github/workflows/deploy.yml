@@ -43,11 +43,15 @@ jobs:
             # Quand on est ici on est déjà connecté en SSh sur le serveur.
             # Grace a Github actions.
 
+            docker stop mymilitary
+
+            docker container remove mymilitary
+
             # donc imagine que tu est sur le serveur en train de taper les commandes docker
             # 2. On va mettre a jour l'image mymilitary sur le serveur VPS
             # Je te tape la commande car tu ne la connais pas
             docker pull noah64/military
 
             # 3. Maintenant on relance le container mymilitary
-            docker run --rm -p 89:80 --name mymilitary noah64/military 
+            docker run --rm -d -p 89:80 --name mymilitary noah64/military 
             echo "Déploiement complet !"
