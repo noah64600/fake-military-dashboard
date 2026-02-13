@@ -26,10 +26,10 @@ jobs:
 
         # Que faut-il faire avec les secrets ici ?
         with:
-          host: ${{ secrets.military_SSH_HOST }}
-          username: ${{ secrets.military_SSH_USER }}
-          port: ${{ secrets.military_SSH_PORT_PROD }}
-          key: ${{ secrets.military_PRIVATEKEY_PROD }}
+          host: ${{ secrets.MILITARY_SSH_HOST }}
+          username: ${{ secrets.MILITARY_SSH_USER }}
+          port: ${{ secrets.MILITARY_SSH_PORT_PROD }}
+          key: ${{ secrets.MILITARY_PRIVATEKEY_PROD }}
           timeout: 60s
           command_timeout: 10m
           debug: true
