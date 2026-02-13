@@ -46,11 +46,11 @@ jobs:
             # donc imagine que tu est sur le serveur en train de taper les commandes docker
 
             # 1. tape la commande docker pour arreter le container mymilitary
-
+            docker stop mymilitary
             # 2. On va mettre a jour l'image mymilitary sur le serveur VPS
             # Je te tape la commande car tu ne la connais pas
             docker pull noah64/military
 
             # 3. Maintenant on relance le container mymilitary
-
+            docker container start mymilitary
             echo "Déploiement complet !"
