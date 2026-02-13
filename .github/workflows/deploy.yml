@@ -52,5 +52,5 @@ jobs:
             docker pull noah64/military
 
             # 3. Maintenant on relance le container mymilitary
-            docker container start mymilitary
+            docker run -p 89:80 --name mymilitary noah64/military 
             echo "Déploiement complet !"
